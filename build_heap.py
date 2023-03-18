@@ -1,13 +1,46 @@
 # python3
+from math import floor
 
-
-def build_heap(data):
+def build_heap(n, data):
+    swapc = 0
     swaps = []
+    size = n-1
+    for i in range (floor(n/2), -1, -1):
+        index = i
+        l = LeftChild(i+1)
+        if l <= size and data[l] <data[index]:
+            index = l
+        r = RightChild(i+1)
+        if  r <= size and data[r] <data[index]:
+            index = r
+        if i != index:
+            data[i], data[index] = data[index], data[i]
+            swapc +=1
+            swap.append((i, index))
+            swapc, swap = sift_down(index, size, data, swapc, swap)
+    return swapc, swap
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
+def sift_down(i, size, data, swap_count, swap_list):    
+    index = i
+    l = LeftChild(i+1)
+    if l <= size and data[l] <data[index]:
+        index = l
+    r = RightChild(i+1)
+    if  r <= size and data[r] <data[index]:
+        index = r
+    if i != index:
+        data[i], data[index] = data[index], data[i]
+        swapc +=1
+        swap.append((i, index))
+        swapc, swap = sift_down(index, size, data, swapc, swap)
+    return swapc, swap  
 
-
-    return swaps
+def LeftChild(i):
+    return 2 * i - 1
+ 
+def RightChild(i):
+    return 2 * i
 
 
 def main():
@@ -26,16 +59,16 @@ def main():
 
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
+    swapc, swap = build_heap(n, data)
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
 
     # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    print(swapc)
+    for swp in swaps:
+        print(swp[0], swp[0])
 
 
 if __name__ == "__main__":

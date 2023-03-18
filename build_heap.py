@@ -1,42 +1,66 @@
 # python3
+from math import floor
 
-
+def changes(data, n, i, swaps):    
+    l = (i << 1 ) + 1
+    r = (i << 1 ) + 2
+    index = i
+    if l < n and data[l] < data[index]:
+        index = l
+    if r < n and data[r] < data[index]:
+        index = r
+    if index != i:
+        swaps.append((i, index))
+        data[i], data[index] = data[index], data[i]
+        changes(data, n, index, swaps)
+    
 def build_heap(data):
     swaps = []
+    n = len(data)
+    for i in range(n // 2 -1, -1, -1):
+        changes(data, n, i, swaps)
+    return swaps
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
-
-
-    return swaps
-
-
-def main():
-    
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-
-
     # input from keyboard
-    n = int(input())
-    data = list(map(int, input().split()))
-
     # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
-
     # calls function to assess the data 
     # and give back all swaps
-    swaps = build_heap(data)
-
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
-
-
+    # input from keyboard
+    # checks if lenght of data is the same as the said lenght
+    # calls function to assess the data 
+    # and give back all swaps
+    # TODO: output how many swaps were made, 
+    # this number should be less than 4n (less than 4*len(data))
     # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
-
+    
+def main():
+    try:
+        text = input().strip()
+        if "I" in text:
+            n = int(input())
+            data = list(map(int, input().split()))
+        elif "F" in text:
+            filename = input()
+            with open ("tests/" + filename, 'r') as f:
+                n = int(f.readline())
+                data = list(map(int,f.readline().split()))
+        else:
+            raise ValueError("Invalid input, please input F or I!")
+        if n != len(data):
+            raise ValueError("Invalid input, length of data does not match!")
+        swaps = build_heap(data)
+        print(len(swaps))
+        for swp in swaps:
+            print(swp[0], swp[1])
+   
+    except ValueError:
+        print("Error")
 
 if __name__ == "__main__":
     main()

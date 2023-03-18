@@ -9,11 +9,10 @@ def sift_down(data, n, i, swaps):
         index = l
     if r < n and data[r] < data[index]:
         index = r
-    if index ==i:
-        break
-    swaps.append((i, index))
-    data[i], data[index] = data[index], data[i]
-    sift_down(data, n, index, swaps)
+     if index !=i:
+        swaps.append((i, index))
+        data[i], data[index] = data[index], data[i]
+        sift_down(data, n, index, swaps)
     
 def build_heap(data):
     swaps = []

@@ -9,7 +9,7 @@ def sift_down(data, n, i, swaps):
         index = l
     if r < n and data[r] < data[index]:
         index = r
-     if index != i:
+    if index != i:
         swaps.append((i, index))
         data[i], data[index] = data[index], data[i]
         sift_down(data, n, index, swaps)

@@ -14,7 +14,7 @@ def sift_down(data, n, i, swaps):
         data[i], data[index] = data[index], data[i]
         sift_down(data, n, index, swaps)
     
-def build_heap(n, data):
+def build_heap(data):
     swaps = []
     n = len(data)
     for i in range(n // 2 -1, -1, -1):
@@ -22,8 +22,6 @@ def build_heap(n, data):
     return swaps
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
-
-def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
@@ -41,6 +39,7 @@ def main():
     # this number should be less than 4n (less than 4*len(data))
     # output all swaps
     
+def main():
     try:
         text = input().strip()
         if "I" in text:
@@ -51,9 +50,6 @@ def main():
             with open ("test/" + filename, 'r') as f:
                 n = int(f.readline())
                 data = list(map(int,f.readline().split()))        
-            #assert len(data) == n
-       # if n == 0:
-         #   raise ValueError("Invalid input: no value for n")
         assert len(data) == n
         swaps = build_heap(data)
         print(len(swaps))

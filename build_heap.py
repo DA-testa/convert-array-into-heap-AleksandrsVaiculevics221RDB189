@@ -2,7 +2,7 @@
 from math import floor
 
 def build_heap(n, data):
-    swapc = 0
+    swap_count = 0
     swaps = []
     size = n-1
     for i in range (floor(n/2), -1, -1):
@@ -15,13 +15,13 @@ def build_heap(n, data):
             index = r
         if i != index:
             data[i], data[index] = data[index], data[i]
-            swapc +=1
-            swap.append((i, index))
-            swapc, swap = sift_down(index, size, data, swapc, swap)
-    return swapc, swap
+            swap_count +=1
+            swaps.append((i, index))
+            swap_count, swaps = sift_down(index, size, data, swap_count, swaps)
+    return swap_count, swaps
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
-def sift_down(i, size, data, swap_count, swap_list):    
+def sift_down(i, size, data, swap_count, swaps):    
     index = i
     l = LeftChild(i+1)
     if l <= size and data[l] <data[index]:
@@ -31,9 +31,9 @@ def sift_down(i, size, data, swap_count, swap_list):
         index = r
     if i != index:
         data[i], data[index] = data[index], data[i]
-        swapc +=1
-        swap.append((i, index))
-        swapc, swap = sift_down(index, size, data, swapc, swap)
+        swap_count +=1
+        swaps.append((i, index))
+        swap_count, swaps = sift_down(index, size, data, swap_count, swaps)
     return swapc, swap  
 
 def LeftChild(i):
@@ -61,8 +61,8 @@ def main():
             assert len(data) == n
         if n == 0:
             raise ValueError("Invalid input: no value for n")    
-        swapc, swap = build_heap(n, data)
-        print(swapc)
+        swap_count, swaps = build_heap(n, data)
+        print(swap_count)
         for swp in swaps:
             print(swp[0], swp[0])
     # input from keyboard

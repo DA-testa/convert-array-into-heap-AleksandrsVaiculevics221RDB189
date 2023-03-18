@@ -5,9 +5,9 @@ def sift_down(data, n, i, swaps):
     l = (i << 1 ) + 1
     r = (i << 1 ) + 2
     index = i
-    if l<n and data[l]<data[index]
+    if l<n and data[l]<data[index]:
         index = l
-    if r<n and data[r] < data[index]
+    if r<n and data[r] < data[index]:
         index = r
     if index !=i:
         swaps.append((i, index))

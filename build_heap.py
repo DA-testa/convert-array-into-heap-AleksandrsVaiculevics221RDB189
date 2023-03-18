@@ -45,12 +45,15 @@ def main():
         if "I" in text:
             n = int(input())
             data = list(map(int, input().split()))
-        if "F" in text:
+        elif "F" in text:
             filename = input()
             with open ("tests/" + filename, 'r') as f:
                 n = int(f.readline())
-                data = list(map(int,f.readline().split()))        
-        assert len(data) == n
+                data = list(map(int,f.readline().split()))
+        else:
+            raise ValueError("Invalid input, please input F or I!")
+        if n != len(data):
+            raise ValueError("Invalid input, length of data does not match!")
         swaps = build_heap(data)
         print(len(swaps))
         for swp in swaps:

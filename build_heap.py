@@ -5,8 +5,10 @@ def sift_down(data, n, i, swaps):
     l = (i << 1 ) + 1
     r = (i << 1 ) + 2
     index = i
-    if l < n and data[l] < data[i] else i
-    if r < n and data[r] < data[index] else index
+    if l < n and data[l] < data[i] 
+        index = l
+    if r < n and data[r] < data[index] 
+        index = r
     if index ==i:
         break
     swaps.append((i, index))

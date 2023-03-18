@@ -48,28 +48,33 @@ def main():
     # TODO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-
-
+        text = input()
+        if "I" in text:
+            n = int(input())
+            data = list(map(int, input().split()))
+        if "F" in text:
+            filename = input()
+            with open ("test/" + filename, 'r') as f:
+                n = int(f.readline())
+                data = list(map(int,f.readline().split()))
+            assert len(data) == n
+            swapc, swap = build_heap(n, data)
+             print(swapc)
+        for swp in swaps:
+            print(swp[0], swp[0])
     # input from keyboard
-        n = int(input())
-        data = list(map(int, input().split()))
+        
 
     # checks if lenght of data is the same as the said lenght
-        assert len(data) == n
 
     # calls function to assess the data 
     # and give back all swaps
-        swapc, swap = build_heap(n, data)
 
     # TODO: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
 
     # output all swaps
-        print(swapc)
-        for swp in swaps:
-            print(swp[0], swp[0])
-    #
     except ValueError:
         print("Error")
 

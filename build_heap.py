@@ -44,6 +44,7 @@ def RightChild(i):
 
 
 def main():
+    n=0
     try:
     # TODO : add input and corresponding checks
     # add another input for I or F 
@@ -56,10 +57,12 @@ def main():
             filename = input()
             with open ("test/" + filename, 'r') as f:
                 n = int(f.readline())
-                data = list(map(int,f.readline().split()))
+                data = list(map(int,f.readline().split()))        
             assert len(data) == n
-            swapc, swap = build_heap(n, data)
-             print(swapc)
+        if n == 0:
+            raise ValueError("Invalid input: no value for n")    
+        swapc, swap = build_heap(n, data)
+        print(swapc)
         for swp in swaps:
             print(swp[0], swp[0])
     # input from keyboard

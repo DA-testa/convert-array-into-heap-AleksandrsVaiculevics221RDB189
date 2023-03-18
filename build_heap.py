@@ -1,7 +1,7 @@
 # python3
 from math import floor
 
-def sift_down(data, n, i, swaps):    
+def changes(data, n, i, swaps):    
     l = (i << 1 ) + 1
     r = (i << 1 ) + 2
     index = i
@@ -12,13 +12,13 @@ def sift_down(data, n, i, swaps):
     if index != i:
         swaps.append((i, index))
         data[i], data[index] = data[index], data[i]
-        sift_down(data, n, index, swaps)
+        changes(data, n, index, swaps)
     
 def build_heap(data):
     swaps = []
     n = len(data)
     for i in range(n // 2 -1, -1, -1):
-        sift_down(data, n, i, swaps)
+        changes(data, n, i, swaps)
     return swaps
     # TODO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
